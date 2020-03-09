@@ -15,8 +15,11 @@ import java.util.WeakHashMap;
 public class FormActivity extends AppCompatActivity {
 
 
+
     private EditText editTitle;
     private EditText editDesc;
+
+    Work work = new Work();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,8 @@ public class FormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form);
         editTitle = findViewById(R.id.editTitle);
         editDesc = findViewById(R.id.editDesc);
+
+        getIncomingIntent();
     }
 
     public void onClick(View view) {
@@ -36,4 +41,14 @@ public class FormActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    public void getIncomingIntent() {
+        Intent intent = getIntent();
+        work = (Work) intent.getSerializableExtra("work");
+        if (work != null) {
+            editTitle.setText(work.getTitle());
+            editDesc.setText(work.getDesc());
+        }
+    }
+
 }

@@ -5,12 +5,12 @@
     <string name="nav_header_title">Djandullaeva Aigerim</string>
     <string name="nav_header_subtitle">djandullaeva.aigerim@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_reset">Reset</string>
-    <string name="action_text_size">Text size</string>
+    <string name="action_reset">Сброс</string>
+    <string name="action_text_size">Размер текста</string>
 
-    <string name="menu_home">Task List</string>
-    <string name="menu_gallery">Names</string>
-    <string name="menu_slideshow">Notes</string>
+    <string name="menu_home">Список задач</string>
+    <string name="menu_gallery">Имена</string>
+    <string name="menu_slideshow">Заметки</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>

@@ -19,6 +19,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
    private List<Work> list;
 
+   OnItemClickListener onItemClickListener;
+
     public WorkAdapter(List<Work> list) {
 
         this.list = list;
@@ -42,7 +44,10 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
         return list.size() ;
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
 
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -53,12 +58,29 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
             textDesc = itemView.findViewById(R.id.textDesc);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(getAdapterPosition());
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemClickListener.onItemLongClick( getAdapterPosition());
+                    return true;
+                }
+            });
         }
 
         public void bind(Work work) {
             textTitle.setText(work.getTitle());
             textDesc.setText(work.getDesc());
         }
+
+
+
     }
 
 }

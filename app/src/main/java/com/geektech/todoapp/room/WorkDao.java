@@ -3,8 +3,10 @@ package com.geektech.todoapp.room;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.geektech.todoapp.model.Work;
 
@@ -19,5 +21,13 @@ public interface WorkDao {
 
     @Insert
     void insert(Work work);
+
+    @Delete
+    void delete (Work work);
+
+    @Update
+    void update (Work work);
+
+
 
 }

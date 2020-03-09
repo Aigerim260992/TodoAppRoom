@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private final int RC_WRITE_EXTERNAL = 101;
+
     private AppBarConfiguration mAppBarConfiguration;
 
 
@@ -110,6 +111,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_reset) {
+            startActivity(new Intent(this, OnBoardActivity.class));
+            finish();
+        }
+        if (id == R.id.action_textsize) {
+            startActivityForResult(new Intent(this, SizeActivity.class), 100);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
@@ -124,16 +138,17 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 100) ;
         {
             String title = data.getStringExtra("title");
+
         }
     }
 
-    public void onClick(MenuItem item) {
+   public void onClick(MenuItem item) {
         Prefs.getInstance(this).Delete();
-        finish();
+       finish();
 
-    }
+   }
 
     public void onClicksize(MenuItem item) {
-        startActivity(new Intent(MainActivity.this, SizeActivity.class));
-    }
+       startActivity(new Intent(MainActivity.this, SizeActivity.class));
+   }
 }
