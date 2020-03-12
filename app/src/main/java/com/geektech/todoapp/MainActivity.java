@@ -8,6 +8,7 @@ import com.geektech.todoapp.ui.onboard.OnBoardActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.Environment;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -151,4 +152,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClicksize(MenuItem item) {
        startActivity(new Intent(MainActivity.this, SizeActivity.class));
    }
+
+
+    public void openProfile(View view) {
+        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+    }
 }

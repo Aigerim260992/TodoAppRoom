@@ -10,23 +10,24 @@
 
     <EditText
         android:id="@+id/editTitle"
+        style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/editDesc"
+        style="@style/EditTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Desc" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:textColor="#fff"
+        android:background="@drawable/bg_button"
         android:onClick="onClick"/>
-
-
-
-
 
 
 
