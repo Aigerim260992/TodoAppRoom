@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 
 @Entity
-public class Work implements Serializable {
+public class  Work implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private long id;

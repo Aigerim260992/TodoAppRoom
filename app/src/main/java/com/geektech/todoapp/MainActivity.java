@@ -1,6 +1,8 @@
 package com.geektech.todoapp;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -20,6 +22,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -52,8 +55,13 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        if (FirebaseAuth.getInstance().getCurrentUser()== null){
+            startActivity(new Intent(this, PhoneActivity.class));
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+            Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -114,11 +122,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_reset) {
+        if (id == R.id.actionReset) {
             startActivity(new Intent(this, OnBoardActivity.class));
             finish();
         }
-        if (id == R.id.action_textsize) {
+        if (id == R.id.actionTextsize) {
             startActivityForResult(new Intent(this, SizeActivity.class), 100);
         }
         return super.onOptionsItemSelected(item);
@@ -156,5 +164,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void openProfile(View view) {
         startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+    }
+
+    public void onClickSignOut(MenuItem item) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Вы дейтвительно хотите выйти?").setMessage("Выйти?").
+                setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).setPositiveButton("Да", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+          System.exit(0);
+//      todo    FirebaseAuth.getInstance().signOut();
+//          finish();
+            }
+        }).show();
     }
 }
